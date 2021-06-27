@@ -1,10 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import useSWR from "swr";
 import DistrictInfo from "../../../../components/district-info";
 import Search from "../../../../components/search";
 import { calendarByDistrict, Center } from "../../../../lib/cowin";
 import { getDistricts } from "../../../../lib/node-utils";
-import { genDistrictName } from "../../../../lib/utils";
+import { genDistrictName, todayDate } from "../../../../lib/utils";
 
 type DistrictProps = {
   centers: Center[];
@@ -13,6 +14,19 @@ type DistrictProps = {
 };
 
 const District = ({ centers, districts, initSelected }: DistrictProps) => {
+  // hybrid ssg and spa arch, page loads with static data that is built every 10 mins
+  // and served from cache. On load the app will update the centers every 1 mins
+  // static and dynamic :)
+  const { data } = useSWR(
+    [initSelected.district_id, todayDate()],
+    calendarByDistrict,
+    {
+      initialData: {
+        centers,
+      },
+      refreshInterval: 60000,
+    }
+  );
   return (
     <>
       <Head>
@@ -20,7 +34,7 @@ const District = ({ centers, districts, initSelected }: DistrictProps) => {
         <meta name="description" content={genDistrictName(initSelected)} />
       </Head>
       <Search districts={districts} showModal initSelected={initSelected} />
-      <DistrictInfo centers={centers} />
+      <DistrictInfo centers={data?.centers ?? centers} />
     </>
   );
 };
@@ -29,11 +43,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const districts = getDistricts();
   const districtId = context?.params?.district_id as string;
   const initSelected = districts.find((x) => x.district_id === districtId);
-  const today = new Date();
-  const calender = await calendarByDistrict(
-    districtId,
-    today.toLocaleDateString("en-IN", {}).replace(/\//g, "-")
-  );
+  const calender = await calendarByDistrict(districtId, todayDate());
   return {
     props: { centers: calender.centers ?? [], districts, initSelected },
     // revalidates every 5 mins
@@ -46,7 +56,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = districts.map((d) => ({
     params: d,
   }));
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export default District;

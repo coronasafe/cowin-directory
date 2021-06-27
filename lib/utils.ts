@@ -3,3 +3,6 @@ export const genDistrictName = (district: CT.District): string =>
 
 export const districtLink = (district: CT.District): string =>
   `/state/${district.state_id}/district/${district.district_id}`;
+
+export const todayDate = (): string =>
+  new Date().toLocaleDateString("en-IN", {}).replace(/\//g, "-");
