@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     today.toLocaleDateString("en-IN", {}).replace(/\//g, "-")
   );
   return {
-    props: { ...calender, districts, initSelected },
+    props: { centers: calender.centers ?? [], districts, initSelected },
     // revalidates every 5 mins
     revalidate: 5000,
   };
