@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const today = new Date();
   const calender = await calendarByDistrict(
     districtId,
-    today.toLocaleDateString("en-IN", {}).replaceAll("/", "-")
+    today.toLocaleDateString("en-IN", {}).replace(/\//g, "-")
   );
   return {
     props: { ...calender, districts, initSelected },
