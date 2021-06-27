@@ -6,8 +6,8 @@ export default function Error({ statusCode }: Response) {
   return (
     <>
       <Head>
-        <title>Cowin Directory - Error</title>
-        <meta name="description" content="Cowin Directory" />
+        <title>Vaccine Directory - Error</title>
+        <meta name="description" content="Vaccine Directory" />
       </Head>
       <div className="items-center self-center flex flex-col mb-6 mt-12 mx-6 my-auto overflow-hidden w-full">
         <span className="sm:text-2xl md:text-2xl">

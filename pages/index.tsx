@@ -11,8 +11,8 @@ export default function IndexPage({
   return (
     <>
       <Head>
-        <title>Cowin Directory</title>
-        <meta name="description" content="Cowin Directory" />
+        <title>Vaccine Directory</title>
+        <meta name="description" content="Vaccine Directory" />
       </Head>
       <Search districts={districts} />
       <PathTree districts={districts} />

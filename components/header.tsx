@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className="flex items-center justify-between my-4 mx-6">
       <Link href="/">
-        <a className="text-xl font-bold shine">COWIN DIRECTORY</a>
+        <a className="text-xl font-bold shine">VACCINE DIRECTORY</a>
       </Link>
       <button
         type="button"

@@ -4,8 +4,8 @@ export default function Custom404() {
   return (
     <>
       <Head>
-        <title>Cowin Directory - 404: Page not found</title>
-        <meta name="description" content="Cowin Directory" />
+        <title>Vaccine Directory - 404: Page not found</title>
+        <meta name="description" content="Vaccine Directory" />
       </Head>
       <div className="items-center self-center flex flex-col mb-6 mt-12 mx-6 my-auto overflow-hidden w-full">
         <h1 className="text-4xl font-bold tracking-tight leading-tight px-5 text-center sm:text-6xl sm:mt-4">
