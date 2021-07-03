@@ -1,6 +1,5 @@
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
-
 import PathTree from "../components/pathtree";
 import Search from "../components/search";
 import { getDistricts } from "../lib/node-utils";

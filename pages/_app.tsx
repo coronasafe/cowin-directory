@@ -1,7 +1,6 @@
 import type { AppProps } from "next/app";
 import Router from "next/router";
 import NProgress from "nprogress";
-
 import Footer from "../components/footer";
 import Header from "../components/header";
 import "../styles/index.css";

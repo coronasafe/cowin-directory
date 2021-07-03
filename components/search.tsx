@@ -1,16 +1,14 @@
 import { Transition } from "@headlessui/react";
+import clsx from "clsx";
+import { useCombobox } from "downshift";
 import fuzzysort from "fuzzysort";
 import { useRouter } from "next/router";
-import Link from "next/link";
-import { useMemo, useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 import { Menu, X } from "react-feather";
 import { Scrollbar } from "react-scrollbars-custom";
 import { useMeasure } from "react-use";
-import { useCombobox } from "downshift";
-
-import PathTree from "./pathtree";
 import { districtLink, genDistrictName } from "../lib/utils";
-import clsx from "clsx";
+import PathTree from "./pathtree";
 
 type SelectModalProps = {
   districts: CT.District[];
@@ -113,7 +111,9 @@ export default function Search({
           <input
             {...getInputProps()}
             placeholder={
-              initSelected ? genDistrictName(initSelected) : "Search for a LSG"
+              initSelected
+                ? genDistrictName(initSelected)
+                : "Search for a District"
             }
             className="card pl-2 pr-10 appearance-none outline-none h-12 w-full border focus:border-green-500"
           />

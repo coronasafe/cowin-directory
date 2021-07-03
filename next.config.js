@@ -5,8 +5,12 @@
 //   reactStrictMode: true,
 // });
 
-const withTM = require("next-transpile-modules")(["lodash-es"]);
+// const withTM = require("next-transpile-modules")(["lodash-es"]);
 
-module.exports = withTM({
+// module.exports = withTM({
+//   reactStrictMode: true,
+// });
+
+module.exports = {
   reactStrictMode: true,
-});
+};

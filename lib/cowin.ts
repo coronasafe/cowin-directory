@@ -1,15 +1,23 @@
+import axios from "axios";
+
 const BASE_URL = "https://cdn-api.co-vin.in/api";
 const USER_AGENT =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36";
 const FETCH_OPTIONS = {
-  headers: {
+  headers: typeof Window === "undefined" && {
     "User-Agent": USER_AGENT,
   },
 };
 
-type CalendarByDistrictType = {
+export type CalendarByDistrictType = {
   centers: Center[];
+  lastUpdatedISO: string;
 };
+
+export enum FeeTypes {
+  Free = "Free",
+  Paid = "Paid",
+}
 
 export type Center = {
   center_id: number;
@@ -23,7 +31,7 @@ export type Center = {
   long: number;
   from: string;
   to: string;
-  fee_type: string;
+  fee_type: FeeTypes;
   sessions: Session[];
 };
 
@@ -41,35 +49,14 @@ export type Session = {
 export const calendarByDistrict = async (
   districtId: string,
   date: string
-): Promise<CalendarByDistrictType> =>
-  (
-    await fetch(
-      `${BASE_URL}/v2/appointment/sessions/public/calendarByDistrict?district_id=${districtId}&date=${date}`,
-      FETCH_OPTIONS
-    )
-  ).json();
-
-export interface States {
-  states: State[];
-  ttl: number;
-}
-
-export interface State {
-  state_id: number;
-  state_name: string;
-}
-
-export const getStates = async (): Promise<States> =>
-  (await fetch(`${BASE_URL}/v2/admin/location/states`)).json();
-
-export interface Districts {
-  districts: District[];
-  ttl: number;
-}
-
-export interface District {
-  district_id: number;
-  district_name: string;
-}
-export const getDistricts = async (stateId: string): Promise<District> =>
-  (await fetch(`${BASE_URL}/v2/admin/location/districts/${stateId}`)).json();
+): Promise<CalendarByDistrictType> => {
+  const res = await axios(
+    `${BASE_URL}/v2/appointment/sessions/public/calendarByDistrict?district_id=${districtId}&date=${date}`,
+    FETCH_OPTIONS
+  );
+  const data = await res.data;
+  return {
+    ...data,
+    lastUpdatedISO: new Date().toISOString(),
+  };
+};

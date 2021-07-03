@@ -6,17 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "scrape-districts": "node ./scripts/scrape-districts.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.3.0",
+    "axios": "^0.21.1",
     "clsx": "^1.1.1",
     "downshift": "^6.1.3",
     "fuzzysort": "^1.1.4",
-    "lodash-es": "^4.17.21",
+    "lodash": "^4.17.21",
     "next": "11.0.1",
     "next-pwa": "^5.2.21",
-    "next-transpile-modules": "^8.0.0",
     "nprogress": "^0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -27,8 +28,8 @@
     "use-theme-switcher": "^1.0.0"
   },
   "devDependencies": {
-    "@types/lodash-es": "^4.17.4",
-    "@types/node": "^15.12.4",
+    "@types/lodash": "^4.14.170",
+    "@types/node": "^15.12.5",
     "@types/nprogress": "^0.2.0",
     "@types/react": "17.0.11",
     "@types/react-dom": "^17.0.8",

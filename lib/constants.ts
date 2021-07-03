@@ -38,16 +38,9 @@ export const STATES: Record<string, string> = {
   "37": "Daman and Diu",
 };
 
-// TODO: change this link
-export const CONTRIBUTE_LINK = "#";
-
-export const REPO_LINK = "https://github.com/coronasafe/x";
+export const REPO_LINK = "https://github.com/coronasafe/vaccine-directory";
 
 export const FOOTER_LINKS = [
-  {
-    href: CONTRIBUTE_LINK,
-    label: "Contribute",
-  },
   {
     href: REPO_LINK,
     label: "Github",

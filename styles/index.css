@@ -26,6 +26,13 @@
   @apply bg-white dark:bg-bunker-600 border border-bunker-600 dark:border-green-100 rounded-lg;
 }
 
+input:checked + div {
+  @apply border-green-500;
+}
+input:checked + div svg {
+  @apply block;
+}
+
 /* Start purging... */
 @tailwind utilities;
 /* Stop purging. */

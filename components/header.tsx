@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useMemo } from "react";
-import { Sun, Moon } from "react-feather";
-
+import { Moon, Sun } from "react-feather";
 import { useDarkMode } from "../lib/theme";
 
 export default function Header() {

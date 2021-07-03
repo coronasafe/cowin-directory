@@ -2,7 +2,6 @@ import { Transition } from "@headlessui/react";
 import Link from "next/link";
 import { memo, ReactNode, useCallback, useMemo, useState } from "react";
 import { Plus } from "react-feather";
-
 import { STATES } from "../lib/constants";
 import { districtLink } from "../lib/utils";
 
