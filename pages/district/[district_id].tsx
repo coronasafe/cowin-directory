@@ -91,7 +91,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = districts.map((d) => ({
     params: d,
   }));
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export default District;
