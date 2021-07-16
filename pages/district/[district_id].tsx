@@ -61,10 +61,10 @@ const District = ({
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  const districts = getDistricts();
+  const districtId = context?.params?.district_id as string;
+  const initSelected = districts.find((x) => x.district_id === districtId);
   try {
-    const districts = getDistricts();
-    const districtId = context?.params?.district_id as string;
-    const initSelected = districts.find((x) => x.district_id === districtId);
     if (!initSelected) {
       throw Error("Invalid district id");
     }
@@ -80,8 +80,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
       revalidate: 5000,
     };
   } catch (error) {
+    console.error(error);
     return {
-      notFound: true,
+      props: {
+        centers: [],
+        lastUpdatedISO: new Date().toISOString(),
+        districts,
+        initSelected,
+      },
+      // revalidates every 5 mins
+      revalidate: 5000,
     };
   }
 };
